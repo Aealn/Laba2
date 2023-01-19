@@ -1,0 +1,233 @@
+[
+    {
+      "name": "вопрос про экскурсии для детей",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["solution", 0]},
+                              {"method" : "compare", "arguments" : ["экскурсии для детей", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "setValue",
+                  "arguments" : [
+                              "экскурсии для детей",
+                              {"method" : "yesOrNo", "arguments" : "Вам нужны экскурсии для детей?"}
+                  ]
+      }
+    },
+    {
+      "name": "Вопрос про пляж с удобным заходом в море",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["solution", 0]},
+                              {"method" : "compare", "arguments" : ["удобный пляж", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "setValue",
+                  "arguments" : [
+                              "удобный пляж",
+                              {"method" : "yesOrNo", "arguments" : "Вам важен пляж с удобным заходом в море?"}
+                  ]
+      }
+    },
+    {
+      "name": "Вопрос про возраст",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["solution", 0]},
+                              {"method" : "compare", "arguments" : ["возраст", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "setValue",
+                  "arguments" : [
+                              "возраст",
+                              {"method" : "askValue", "arguments" : "Какой у вас возраст?"}
+                  ]
+      }
+    },
+    {
+      "name": "вопрос про отдых с детьми",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["solution", 0]},
+                              {"method" : "compare", "arguments" : ["отдых с детьми", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "setValue",
+                  "arguments" : [
+                              "отдых с детьми",
+                              {"method" : "yesOrNo", "arguments" : "Вам важна возможность отдыха с детьми?"}
+                  ]
+      }
+    },
+    {
+      "name": "вопрос про экономичный отдых",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["solution", 0]},
+                              {"method" : "compare", "arguments" : ["экономичный отдых", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "setValue",
+                  "arguments" : [
+                              "экономичный отдых",
+                              {"method" : "yesOrNo", "arguments" : "Вам важен экономичный отдых?"}
+                  ]
+      }
+    },
+
+
+
+
+
+    {
+      "name": "Правило про питание",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["экономичный отдых", "yes"]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+                  ]
+      },
+      "result" : {
+        "method" : "and",
+        "arguments" : [
+                    {"method" : "setValue", "arguments" : ["завтрак и ужин", "yes"]},
+                    {"method" : "print", "arguments" : "Вероятнее всего вам важно питание: завтра и ужин"}
+        ]
+      }
+    },
+    {
+      "name": "Правило про много развлечений в отеле",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["отдых с детьми", "no"]},
+                              {"method" : "biggest", "arguments" : ["возраст", "18"]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+        ]
+      },
+      "result" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "setValue", "arguments" : ["много развлечений в отеле", "yes"]},
+                              {"method" : "print", "arguments" : "Вероятнее всего, вам важно чтобы было много развлечений в отеле"}
+                  ]
+      }
+    },
+    {
+      "name": "Правило про активный отдых",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["отдых с детьми", "yes"]},
+                              {"method" : "compare", "arguments" : ["экскурсии для детей", "yes"]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "and",
+                  "arguments" : [
+                                {"method" : "setValue", "arguments" : ["активный отдых", "yes"]},
+                                {"method" : "print", "arguments" : "Вероятнее всего, вам важен активный отдых"}
+                  ]
+      }
+    },
+    {
+      "name": "Правило про аквапарк",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "compare", "arguments" : ["экономичный отдых", "no"]},
+                              {"method" : "compare", "arguments" : ["удобный пляж", "yes"]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "and",
+                  "arguments" : [
+                                {"method" : "setValue", "arguments" : ["аквапарк", "yes"]},
+                                {"method" : "print", "arguments" : "Вероятнее всего, вам важен аквапарк"}
+                  ]
+      }
+    },
+
+
+
+
+
+    {
+      "name": "Правило: недалеко от центра",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "or", "arguments": [
+                                          {"method" : "compare", "arguments" : ["завтрак и ужин", "yes"]},
+                                          {"method" : "compare", "arguments" : ["много развлечений в отеле", "yes"]}
+                              ]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "and",
+                  "arguments" : [
+                                {"method" : "setValue", "arguments" : ["недалеко от центра", "yes"]},
+                                {"method" : "print", "arguments" : "Верятнее всего, вам важно чтобы курорт был недалеко от центра"}
+                  ]
+      }
+    },
+    {
+      "name": "Правило про хорошую транспортную развязку",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "or", "arguments": [
+                                          {"method" : "compare", "arguments" : ["активный отдых", "yes"]},
+                                          {"method" : "compare", "arguments" : ["аквапарк", "yes"]}
+                              ]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "and",
+                  "arguments" : [
+                                {"method" : "setValue", "arguments" : ["транспортная развязка", "yes"]},
+                                {"method" : "print", "arguments" : "Вероястнее всего, вам важна хорошая транспортная развязка"}
+                  ]
+      }
+    },
+
+
+
+
+
+    {
+      "name": "Рекомендация - посетите курорт Алания",
+      "condition" : {
+                  "method" : "and",
+                  "arguments" : [
+                              {"method" : "or", "arguments": [
+                                          {"method" : "compare", "arguments" : ["недалеко от центра", "yes"]},
+                                          {"method" : "compare", "arguments" : ["транспортная развязка", "yes"]}
+                              ]},
+                              {"method" : "compare", "arguments" : ["solution", 0]}
+                  ]
+      },
+      "result" : {
+                  "method" : "and",
+                  "arguments" : [
+                                {"method" : "setValue", "arguments" : ["solution", 1]},
+                                {"method" : "print", "arguments" : "Побробуйте посетить курорт Алания"}
+                  ]
+      }
+    }
+]
